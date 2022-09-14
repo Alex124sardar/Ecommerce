@@ -71,7 +71,7 @@
     <link href="admin/sidebars.css" rel="stylesheet">
 </head>
 
-<body>
+<body >
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -132,7 +132,7 @@
         </symbol>
     </svg>
 
-    <main class="d-flex flex-nowrap">
+    <main class="d-flex flex-nowrap" >
         <h1 class="visually-hidden">Sidebars examples</h1>
 
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
@@ -140,22 +140,29 @@
                 <svg class="bi pe-none me-2" width="40" height="32">
                     <use xlink:href="#bootstrap" />
                 </svg>
-                <span class="fs-4">Sidebar</span>
+                <span class="fs-4">Ecommerce</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="/home" class="nav-link text-white {{ Request::is('home') ? 'active' : '' }}" aria-current="page">
+            <!-- <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          Home
+        </a>
+      </li> -->   
+            <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link text-white {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page">
                         <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#home" />
+                            <use xlink:href="#speedometer2" />
                         </svg>
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="/category" class="nav-link text-white {{ Request::is('category') ? 'active' : '' }}">
+                    <a href="{{ route('index.category') }}" class="nav-link text-white {{ Request::is('category-index') ? 'active' : '' }}" aria-current="page">
+                       <!-- <a href="category" class="nav-link" text-white aria-current=" page"> -->
                         <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#speedometer2" />
+                            <use xlink:href="#grid" />
                         </svg>
                         Catagory
 
@@ -163,9 +170,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="{{ route('index.product') }}" class="nav-link text-white {{ Request::is('product-index') ? 'active' : '' }}" aria-current="page">
                         <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#table" />
+                            <use xlink:href="#grid" />
                         </svg>
                         Products
                     </a>
@@ -173,7 +180,7 @@
                 <li>
                     <a href="#" class="nav-link text-white">
                         <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#grid" />
+                            <use xlink:href="#table" />
                         </svg>
                         Orders
                     </a>
@@ -183,15 +190,15 @@
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#people-circle" />
                         </svg>
-                        Users
+                        Customers
                     </a>
                 </li>
             </ul>
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
+                    <img src="\frontend\Images\suraj.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>Suraj</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -200,7 +207,14 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item" href="#"  href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        Sign out </a></li>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                 </ul>
             </div>
         </div>
@@ -208,6 +222,7 @@
         <div class="container">
         @yield('component')
         </div>
+        </main>
         
 
         <div class="b-example-divider b-example-vr"></div>
